@@ -1,10 +1,10 @@
 import fs from 'fs';
 
-function readFileLines(filePath) {
+function readFileLines({filePath, end}) {
   try {
     const data = fs.readFileSync(`${filePath}`, 'utf8');
     let dataLines = data.split(/\r\n|\n/); 
-    dataLines.push('');
+    end && dataLines.push('');
     return dataLines;
   }  catch (erro) {
     console.log(erro);

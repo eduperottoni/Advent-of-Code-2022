@@ -1,6 +1,7 @@
 import readFileLines from "../../utils/readFile.js";
 
-var data = readFileLines('input.txt');
+var data = readFileLines({filePath: '../input.txt', 
+                        end: true});
 
 let elfCalories = 0
 let topThree = [0, 0, 0]
@@ -12,9 +13,10 @@ const adjustArray = (startPosition, arrayLenght) => {
         }
     }
 }
-for (let i = 0; i < data.length; i++) {
-    if (data[i]) {
-        elfCalories += Number(data[i]);
+
+data.forEach( line => {
+    if (line) {
+        elfCalories += Number(line);
     } else {
         for(let j = 0; j < 3; j ++) {
             if (elfCalories > topThree[j]) {
@@ -25,7 +27,7 @@ for (let i = 0; i < data.length; i++) {
         }
         elfCalories = 0;
     }
-}
+});
 
 console.log(
     topThree.reduce((sum, current) => sum + current, 0))

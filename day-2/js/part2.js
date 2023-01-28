@@ -1,15 +1,16 @@
 import readFileLines from "../../utils/readFile.js";
 
-var data = readFileLines('input.txt');
+var data = readFileLines({filePath:'../input.txt',
+                        end: false});
 
 let sumRounds = 0
 
 const opponentShapes = ['A', 'B', 'C']
 const roundResults = ['X', 'Y', 'Z']
 
-for (let i = 0; i < data.length - 1; i++) {
-    const opponentPlay = data[i][0];
-    const roundResult = data[i][2];
+data.forEach((item) =>{
+    const opponentPlay = item[0];
+    const roundResult = item[2];
     switch (roundResult) {
         case 'Y':
             sumRounds += (opponentShapes.indexOf(opponentPlay) + 1)
@@ -26,6 +27,6 @@ for (let i = 0; i < data.length - 1; i++) {
             break;
     }
     sumRounds += (roundResults.indexOf(roundResult) * 3)
-}
+});
 
 console.log(sumRounds)
