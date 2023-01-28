@@ -27,7 +27,6 @@ for (let i = 0; i < data.length; i++) {
     }
 }
 
-console.log(topThree)
 console.log(
     topThree.reduce((sum, current) => sum + current, 0))
 
